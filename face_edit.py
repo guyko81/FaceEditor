@@ -190,8 +190,8 @@ def update_mouse_click(mouse_pos):
 	y = (mouse_pos[1] - sliders_y)
 
 	if x >= 0 and y >= 0 and x < sliders_w and y < sliders_h:
-		slider_ix_w = int(x / slider_w)
-		slider_ix_h = int(y / slider_h)
+		slider_ix_w = (x // slider_w)
+		slider_ix_h = (y // slider_h)
 
 		cur_slider_ix = slider_ix_h * slider_cols + slider_ix_w
 		mouse_pressed = True
@@ -201,7 +201,7 @@ def update_mouse_move(mouse_pos):
 	y = (mouse_pos[1] - sliders_y)
 
 	if y >= 0 and y < sliders_h:
-		slider_row_ix = cur_slider_ix / slider_cols
+		slider_row_ix = cur_slider_ix // slider_cols
 		slider_val = y - slider_row_ix * slider_h
 
 		slider_val = min(max(slider_val, slider_py), slider_h - slider_py) - slider_py
@@ -212,7 +212,7 @@ def update_mouse_move(mouse_pos):
 
 def draw_sliders():
 	for i in range(num_params):
-		row = i / slider_cols
+		row = i // slider_cols
 		col = i % slider_cols
 		x = sliders_x + col * slider_w
 		y = sliders_y + row * slider_h
